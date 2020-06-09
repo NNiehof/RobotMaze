@@ -1,24 +1,10 @@
-#include <iostream>
+/*
+* Matrix.cpp - Flat array class that can be manipulated
+* by row and column indices like a matrix.
+*/
 
-class Matrix {
-private:
-	int rows, cols;
+#include "Matrix.h"
 
-	int ind(int row, int col);
-public:
-	Matrix(int rows, int cols);
-	Matrix(int dims);
-	Matrix();
-
-	int* vals;
-
-	void zeros();
-	int get(int row, int col);
-	void set(int row, int col, int val);
-	void incr(int row, int col);
-	void decr(int row, int col);
-	void print();
-};
 
 Matrix::Matrix(int rows, int cols) {
 	this->rows = rows;
@@ -61,23 +47,4 @@ void Matrix::incr(int row, int col) {
 void Matrix::decr(int row, int col) {
 	// decrement
 	vals[ind(row, col)] --;
-}
-
-void Matrix::print() {
-	// print the values as rows and columns
-	for (int r = 0; r < rows; r++) {
-		for (int c = 0; c < cols; c++) {
-			std::cout << vals[ind(r, c)] << '\t';
-		}
-		std::cout << std::endl;
-	}
-}
-
-int main() {
-	Matrix m(4, 5);
-	m.zeros();
-	m.set(1, 3, 5);
-	m.incr(3, 4);
-	m.decr(0, 1);
-	m.print();
 }
