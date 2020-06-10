@@ -2,15 +2,27 @@ import os.path
 import matplotlib.pyplot as plt
 
 def plot_maze(maze, start=None, goal=None, save_as=None):
+    """
+    Plot a line maze.
+
+    Args:
+        maze (array): each element is a nested list with the tile type
+            number of each tile in a row of the maze. The y-axis will be 
+            inverted for plotting to retain the topography of the maze array.
+        start (array, optional): Location of the start position, in row
+            and columns indices of the maze. Will draw a triangle at the start 
+            tile. Defaults to None.
+        goal (array, optional): Location of the goal position, in row
+            and columns indices of the maze. Will draw a square at the goal
+            tile. Defaults to None.
+        save_as (string, optional): File path to save the figure as image.
+    """
+
     # line pieces in orientations north, east, south, west
     n = [[0.5, 0.5], [0.5, 1.0]]
     e = [[0.5, 1.0], [0.5, 0.5]]
     s = [[0.5, 0.5], [0.5, 0.0]]
     w = [[0.5, 0.0], [0.5, 0.5]]
-
-    # diagonal lines for goal tile
-    g1 = [[0.2, 0.8], [0.2, 0.8]]
-    g2 = [[0.2, 0.8], [0.8, 0.2]]
 
     # all possible tiles
     tiles = {
@@ -87,6 +99,7 @@ def plot_maze(maze, start=None, goal=None, save_as=None):
     ax.set_ylim(0.0, len(maze))
     plt.gca().set_aspect('equal')
     plt.axis('off')
+    plt.tight_layout()
 
     if save_as:
         plt.savefig(save_as)
