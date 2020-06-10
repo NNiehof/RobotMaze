@@ -3,6 +3,11 @@ Line maze resolution for an Arduino-based robot.
 
 ![Robot](https://github.com/NNiehof/RobotMaze/blob/master/robot.jpg)
 
+### Line maze
+The robot will follow lines on the floor that form a maze. Mazes can be designed and plotted such as shown below. The start location is indicated by a triangle, the goal location is indicated by a square.
+
+![Line maze](https://github.com/NNiehof/RobotMaze/blob/master/mazes/maze1.png)
+
 ### Project structure
 The Arduino compiler includes all source code in the `libraries` directory, regardless of what is indicated in header files.
 
