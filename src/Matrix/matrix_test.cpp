@@ -1,5 +1,5 @@
 /*
-* MatrixTest.cpp - Child class of Matrix that adds printing
+* matrix_test.cpp - Child class of Matrix that adds printing
 * functionality. This allows for building and testing in
 * pure C++ for easier debugging than on Arduino.
 * The iostream functions are kept out of the Matrix class
@@ -7,7 +7,7 @@
 */
 
 #include <iostream>
-#include "../libraries/Matrix/Matrix.h"
+#include "../libraries/matrix/matrix.h"
 
 class MatrixTest : public Matrix {
 public:

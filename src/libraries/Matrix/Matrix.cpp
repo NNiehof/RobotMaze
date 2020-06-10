@@ -1,9 +1,9 @@
 /*
-* Matrix.cpp - Flat array class that can be manipulated
+* matrix.cpp - Flat array class that can be manipulated
 * by row and column indices like a matrix.
 */
 
-#include "Matrix.h"
+#include "matrix.h"
 
 
 Matrix::Matrix(int rows, int cols) {

@@ -1,5 +1,5 @@
 /*
-* Matrix.h
+* matrix.h
 */
 
 #ifndef MATRIX_H
