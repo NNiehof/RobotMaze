@@ -8,6 +8,11 @@ The robot will follow lines on the floor that form a maze. Mazes can be designed
 
 ![Line maze](https://github.com/NNiehof/RobotMaze/blob/master/mazes/maze1.png)
 
+### Servo motor control
+The left and right servo motors have a reference signal with a pulse width of 1500 µs, meaning that a control signal of 1500 µs will cause the motor to stand still. Measured wheel rotations per minute (RPM) at different pulse widths are shown in the figure below.
+
+![Servo response curves](https://github.com/NNiehof/RobotMaze/blob/master/servo_response_curves.png)
+
 ### Project structure
 The Arduino compiler includes all source code in the `libraries` directory, regardless of what is indicated in header files.
 
