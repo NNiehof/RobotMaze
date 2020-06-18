@@ -1,34 +1,12 @@
 /*
- * Line following with five QTI sensors.
+ * Line following robot class with five QTI sensors.
  * 
  * Note: this uses direct port manipulation on the Atmega microcontroller.
  * This allows for efficient, simultaneous readout of multiple digital pins.
  * For details, see: http://playground.arduino.cc/Learning/PortManipulation
  */
 
-#include <Servo.h>
-
-class Robot {
-  protected:
-    Servo servo_left;
-    Servo servo_right;
-    
-  public:
-    Robot(int tau_p, int tau_i, int tau_d, int servo_left_pin, int servo_right_pin);
-    Robot(int tau_p, int tau_i, int tau_d);
-
-    int tau_p, tau_i, tau_d;
-    byte pins;
-    int error;
-    int previous_error;
-    int sum_error;
-
-    void init();
-    void run();
-    byte sense();
-    void move(byte pins);
-    int CTE(byte pins);
-};
+#include "robot.h"
 
 Robot::Robot(int tau_p, int tau_i, int tau_d, int servo_left_pin, int servo_right_pin) {
   this->tau_p = tau_p;
@@ -50,7 +28,7 @@ void Robot::init() {
   error = CTE(pins);
 }
 
-void Robot::run() {
+void Robot::go() {
   while(true) {
     pins = sense();
     move(pins);
@@ -109,13 +87,10 @@ void Robot::move(byte pins) {
   // PID control term
   int PID_control = (tau_p * error) + (tau_i * sum_error) + (tau_d * diff_error);
   
-  servo_left.writeMicroseconds(1500 + 100 + PID_control);
-  servo_right.writeMicroseconds(1500 - 100 + PID_control);
-
-//  servo_left.writeMicroseconds(1500);
-//  servo_right.writeMicroseconds(1500);
+  servo_left.writeMicroseconds(1500 + 100 - PID_control);
+  servo_right.writeMicroseconds(1500 - 100 - PID_control);
   
-  delay(20);
+  delay(50);
 }
 
 int Robot::CTE(byte pins) {
@@ -151,26 +126,8 @@ int Robot::CTE(byte pins) {
       break;
     case B00000:
       // TODO: put search function here to find line
-      error = 0;
+      error = 10;
       break;
   }
   return error;
 }
-
-// weight parameters for the P, I, D control terms
-int weight_p = 50;
-int weight_i = 0;
-int weight_d = 0;
-
-void setup() {
-  // initialise robot with servo pins
-  Robot robot = Robot(weight_p, weight_i, weight_d, 11, 12);
-  
-  // initial measurement
-  robot.init();
-
-  // run the sense - move feedback loop
-  robot.run();
-}
-
-void loop() {}
