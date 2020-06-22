@@ -112,9 +112,6 @@ void Robot::move(byte pins) {
   servo_left.writeMicroseconds(1500 + 100 + PID_control);
   servo_right.writeMicroseconds(1500 - 100 + PID_control);
 
-//  servo_left.writeMicroseconds(1500);
-//  servo_right.writeMicroseconds(1500);
-  
   delay(20);
 }
 
@@ -160,7 +157,7 @@ int Robot::CTE(byte pins) {
 // weight parameters for the P, I, D control terms
 int weight_p = 50;
 int weight_i = 0;
-int weight_d = 0;
+int weight_d = 10;
 
 void setup() {
   // initialise robot with servo pins
